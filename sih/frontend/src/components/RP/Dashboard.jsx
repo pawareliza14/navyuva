@@ -3,6 +3,7 @@ import './Dashboard.css';
 import { FaBars, FaCog } from 'react-icons/fa'; // Import the settings icon
 import PatentPage from './PatentPage';
 import ProjectProfilePage from './Profile.jsx'; // Corrected import
+// import MonitoringPage from './MonitoringPage'; // New page for monitoring
 
 const RPDashboard = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,11 +28,11 @@ const RPDashboard = () => {
       {isMenuOpen && (
         <div className="left-panel">
           <ul className="menu">
-            <li onClick={() => handleMenuClick('research-institutes')}>Research Institutes</li>
-            <li onClick={() => handleMenuClick('projects')}>Projects</li>
+            <li onClick={() => handleMenuClick('research-institutes')}>Projects</li>
             <li onClick={() => handleMenuClick('people')}>People</li>
             <li onClick={() => handleMenuClick('patents')}>Patents</li> {/* Clicking this will show PatentPage */}
             <li onClick={() => handleMenuClick('funding')}>Funding</li>
+            <li onClick={() => handleMenuClick('monitoring')}>Monitoring</li> {/* New Monitoring Button */}
           </ul>
 
           {/* Settings Icon */}
@@ -51,6 +52,7 @@ const RPDashboard = () => {
         )}
         {selectedPage === 'research-institutes' && <ProjectProfilePage />} {/* Display Research Institute page */}
         {selectedPage === 'patents' && <PatentPage />} {/* Display PatentPage when Patents is clicked */}
+        {selectedPage === 'monitoring' && <MonitoringPage />} {/* Display Monitoring page when Monitoring is clicked */}
         {/* Add other conditionals here to show content for Projects, Funding, etc. */}
       </div>
 
