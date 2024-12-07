@@ -1,0 +1,194 @@
+/* General Layout */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7fc;
+    /* Soft light blue background for the whole page */
+}
+
+.dashboard {
+    display: flex;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    /* Ensures the layout adjusts properly and doesn't overflow */
+}
+
+/* Ensure that the hamburger icon is always on top */
+.hamburger {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    z-index: 2000;
+    /* Higher than other elements to stay above the background */
+    color: #2e1e77;
+    /* Deep blue for contrast */
+    background-color: #e0e7ff;
+    /* Light blue background */
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    transition: transform 0.3s ease;
+}
+
+.hamburger:hover {
+    transform: scale(1.1);
+    /* Slight zoom effect on hover */
+}
+
+/* Left Panel */
+.left-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #2e1e77;
+    /* Deep blue */
+    color: #ffffff;
+    /* White text */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 999;
+    /* Keep below hamburger icon */
+    border-radius: 10px 0 0 10px;
+    /* Rounded corners on the left side */
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.1);
+    /* Softer shadow */
+    width: 220px;
+    /* Slightly decreased width for a balanced look */
+    overflow-y: auto;
+    /* Allow vertical scrolling if the menu grows too large */
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    margin: 15px 0;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    color: #ffffff;
+    /* White text color */
+}
+
+.menu li:hover {
+    background-color: #3b2a5e;
+    /* Slightly darker shade of blue */
+}
+
+/* Settings Icon */
+.settings-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    /* Push to the bottom */
+    padding: 15px;
+    border-radius: 50%;
+    color: #e0e7ff;
+    /* Icon color (deep blue) */
+    cursor: pointer;
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.settings-icon:hover {
+    transform: scale(1.1);
+    /* Slight zoom effect on hover */
+    /* Light blue background on hover */
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 0px;
+    /* Adjusted space to move the content to the right of the menu */
+    /* Matches the left panel width plus a bit of space */
+    margin-right: 40px;
+    padding: 20px;
+    background-color: #ffffff;
+    /* White background for content */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    /* Light shadow for subtle depth */
+    color: #333;
+    /* Dark gray text */
+    flex: 1;
+    width: 100%;
+    /* Ensures it takes full available width */
+    max-width: 1200px;
+    /* Max width for larger screens */
+    height: 100%;
+    /* Full height to prevent overflow issues */
+    overflow-y: auto;
+    /* Enables vertical scrolling when content exceeds the container height */
+    transition: margin-left 0.3s ease;
+    /* Smooth transition */
+}
+
+/* Main Content Heading */
+.main-content h1 {
+    color: #2e1e77;
+    /* Accent color for headings */
+}
+
+/* Right Panel */
+.right-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    /* Decreased width for the right panel */
+    height: 100%;
+    background-color: #2e1e77;
+    /* Deep blue theme color */
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px 0 0 10px;
+    /* Rounded corners on the right side */
+    box-shadow: -2px 0 12px rgba(0, 0, 0, 0.1);
+    /* Softer shadow */
+}
+
+.block {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #ffffff;
+    /* White background to contrast with theme */
+    color: #2e1e77;
+    /* Deep blue text */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(46, 30, 119, 0.2);
+    /* Softer shadow */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.block:hover {
+    transform: translateY(-5px);
+    /* Slight hover lift effect */
+    background-color: #e0e7ff;
+    /* Light blue hover effect */
+}
+
+.block h3 {
+    margin-bottom: 10px;
+    color: #2e1e77;
+    /* Deep blue for headings */
+}

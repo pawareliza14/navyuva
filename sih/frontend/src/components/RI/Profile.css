@@ -1,0 +1,148 @@
+/* Global Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Research Institute Page */
+.research-institute-page {
+    padding: 30px;
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #34495e;
+}
+
+/* Headings */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #2c3e50;
+    text-transform: uppercase;
+}
+
+h4,
+h5 {
+    margin-bottom: 1rem;
+    color: #34495e;
+    font-weight: bold;
+}
+
+/* Sections */
+.section {
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+/* Grid Layout for Horizontal Block */
+.section .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    /* Adjust column size for responsiveness */
+    gap: 20px;
+    padding: 10px;
+}
+
+/* Cards */
+.card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #ccc;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card p {
+    line-height: 1.6;
+    margin: 10px 0;
+    color: #555;
+}
+
+.card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.card ul li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.card ul li:before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #1abc9c;
+    font-size: 1.2rem;
+}
+
+/* Links */
+.card a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}
+
+/* Button-like Links */
+.card a.button {
+    padding: 8px 15px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.card a.button:hover {
+    background-color: #2980b9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design for Horizontal Layout */
+@media (max-width: 1024px) {
+    .section .grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .section .grid {
+        grid-template-columns: 1fr;
+        /* Stacks columns in smaller screens */
+    }
+
+    .card p {
+        margin: 1rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .research-institute-page {
+        padding: 15px;
+    }
+}
