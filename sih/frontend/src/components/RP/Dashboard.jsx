@@ -3,7 +3,7 @@ import './Dashboard.css';
 import { FaBars, FaCog } from 'react-icons/fa'; // Import the settings icon
 import PatentPage from './PatentPage';
 import ProjectProfilePage from './Profile.jsx'; // Corrected import
-// import MonitoringPage from './MonitoringPage'; // New page for monitoring
+import Monitoring from './Monitoring'; // New page for monitoring
 
 const RPDashboard = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,7 +52,7 @@ const RPDashboard = () => {
         )}
         {selectedPage === 'research-institutes' && <ProjectProfilePage />} {/* Display Research Institute page */}
         {selectedPage === 'patents' && <PatentPage />} {/* Display PatentPage when Patents is clicked */}
-        {selectedPage === 'monitoring' && <MonitoringPage />} {/* Display Monitoring page when Monitoring is clicked */}
+        {selectedPage === 'monitoring' && <Monitoring />} {/* Display Monitoring page when Monitoring is clicked */}
         {/* Add other conditionals here to show content for Projects, Funding, etc. */}
       </div>
 
