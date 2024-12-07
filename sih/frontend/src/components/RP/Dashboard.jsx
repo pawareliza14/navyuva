@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Dashboard.css';
 import { FaBars, FaCog } from 'react-icons/fa'; // Import the settings icon
 import PatentPage from './PatentPage';
+import ProjectProfilePage from './Profile.jsx'; // Corrected import
 
 const RPDashboard = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,7 +49,7 @@ const RPDashboard = () => {
             <p>Content goes here...</p>
           </>
         )}
-        {selectedPage === 'research-institutes' && <ResearchInstitutePage />} {/* Display Research Institute page */}
+        {selectedPage === 'research-institutes' && <ProjectProfilePage />} {/* Display Research Institute page */}
         {selectedPage === 'patents' && <PatentPage />} {/* Display PatentPage when Patents is clicked */}
         {/* Add other conditionals here to show content for Projects, Funding, etc. */}
       </div>
