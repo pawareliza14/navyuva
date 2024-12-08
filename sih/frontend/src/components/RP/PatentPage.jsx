@@ -1,5 +1,5 @@
 import React from 'react';
-import './PatentPage.css';
+import './EvaluationMetricsPage.css';
 import { Bar, Line, Scatter } from 'react-chartjs-2';
 import { FaSearch, FaCalendarAlt } from 'react-icons/fa';
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, LineElement, CategoryScale, LinearScale, ArcElement, PointElement } from 'chart.js';
@@ -72,8 +72,26 @@ const EvaluationMetricsPage = () => {
   };
 
   const ipDisputeData = [
-    { caseTitle: 'Patent Infringement by Tech Innovators', filedDate: '03/20/2023', disputedParties: 'Tech Innovators vs. Innovate Co.', status: 'Ongoing', impact: 'High' },
-    { caseTitle: 'AI Research Patent Dispute', filedDate: '07/15/2022', disputedParties: 'AI Research Labs vs. Smart Tech Inc.', status: 'Resolved', impact: 'Moderate' },
+    {
+      disputeTitle: 'Patent Infringement by Tech Innovators',
+      patentNumber: 'IN1234567',
+      disputeType: 'Infringement',
+      status: 'Ongoing',
+      disputeDate: '03/20/2023',
+      resolutionDate: 'N/A',
+      region: 'North America',
+      partiesInvolved: 'Tech Innovators vs Innovate Co.',
+    },
+    {
+      disputeTitle: 'AI Research Patent Dispute',
+      patentNumber: 'IN2345678',
+      disputeType: 'Ownership',
+      status: 'Resolved',
+      disputeDate: '07/15/2022',
+      resolutionDate: '11/10/2022',
+      region: 'Europe',
+      partiesInvolved: 'AI Research Labs vs Smart Tech Inc.',
+    },
     // Add more dispute entries as needed
   ];
 
@@ -181,21 +199,27 @@ const EvaluationMetricsPage = () => {
         <table>
           <thead>
             <tr>
-              <th>Case Title</th>
-              <th>Filed Date</th>
-              <th>Disputed Parties</th>
+              <th>Dispute Title</th>
+              <th>Patent Number</th>
+              <th>Dispute Type</th>
               <th>Status</th>
-              <th>Impact</th>
+              <th>Dispute Date</th>
+              <th>Resolution Date</th>
+              <th>Region</th>
+              <th>Parties Involved</th>
             </tr>
           </thead>
           <tbody>
             {ipDisputeData.map((dispute, index) => (
               <tr key={index}>
-                <td>{dispute.caseTitle}</td>
-                <td>{dispute.filedDate}</td>
-                <td>{dispute.disputedParties}</td>
+                <td>{dispute.disputeTitle}</td>
+                <td>{dispute.patentNumber}</td>
+                <td>{dispute.disputeType}</td>
                 <td>{dispute.status}</td>
-                <td>{dispute.impact}</td>
+                <td>{dispute.disputeDate}</td>
+                <td>{dispute.resolutionDate || 'N/A'}</td>
+                <td>{dispute.region}</td>
+                <td>{dispute.partiesInvolved}</td>
               </tr>
             ))}
           </tbody>
