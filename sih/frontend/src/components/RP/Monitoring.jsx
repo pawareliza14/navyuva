@@ -1,178 +1,8 @@
-// import React, { useState, useEffect } from "react";
-// import './Profile.css'; // Ensure the CSS file is linked
-// import { Line, Bar, Pie } from 'react-chartjs-2';
-// import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, PointElement, LineElement } from 'chart.js';
-
-// // Register all necessary Chart.js components
-// ChartJS.register(
-//   CategoryScale,
-//   LinearScale,
-//   BarElement,
-//   Title,
-//   Tooltip,
-//   Legend,
-//   ArcElement,
-//   PointElement,
-//   LineElement
-// );
-
-// const Monitoring = () => {
-//   const [projectProfile, setProjectProfile] = useState(null);
-//   const [error, setError] = useState(null);
-
-//   // Fetch project profile data from backend API
-//   useEffect(() => {
-//     fetch('http://localhost:5000/api/project-profiles') // API endpoint
-//       .then((response) => {
-//         if (response.ok) {
-//           return response.json();
-//         } else {
-//           throw new Error(`Error ${response.status}: ${response.statusText}`);
-//         }
-//       })
-//       .then((data) => {
-//         // Check if the response contains the expected message and valid data
-//         if (data.message === "Project profiles fetched successfully" && Array.isArray(data.data) && data.data.length > 0) {
-//           setProjectProfile(data.data[0]); // Use the first profile from the data array
-//         } else {
-//           throw new Error('No valid project profile data found');
-//         }
-//       })
-//       .catch((error) => {
-//         console.error("Error fetching project profile data:", error);
-//         setError(`Failed to load data. Error: ${error.message}`);
-//       });
-//   }, []);
-
-//   // Helper function to handle potential empty arrays
-//   const getArrayOrEmpty = (array) => Array.isArray(array) ? array : [];
-
-//   // Handle loading and error states
-//   if (error) {
-//     return <div>{error}</div>;
-//   }
-
-//   if (!projectProfile) {
-//     return <div>Loading...</div>;
-//   }
-
-//   // Graph Data Preparation for Budget Expenditure (Bar Chart)
-//   const budgetData = {
-//     labels: ['Personnel', 'Travel', 'Supplies', 'Equipment'],
-//     datasets: [
-//       {
-//         label: 'Budget Expenditure ($)',
-//         data: [
-//           projectProfile.expenditureCategories?.personnel || 0,
-//           projectProfile.expenditureCategories?.travel || 0,
-//           projectProfile.expenditureCategories?.supplies || 0,
-//           projectProfile.expenditureCategories?.equipment || 0
-//         ],
-//         backgroundColor: 'rgba(75, 192, 192, 0.2)',
-//         borderColor: 'rgba(75, 192, 192, 1)',
-//         borderWidth: 1,
-//       },
-//     ],
-//   };
-
-//   // Graph Data Preparation for Milestone Completion (Pie Chart)
-//   const milestonesCompleted = getArrayOrEmpty(projectProfile.milestones).filter(milestone => milestone.status === 'Completed').length;
-//   const milestonesRemaining = getArrayOrEmpty(projectProfile.milestones).length - milestonesCompleted;
-
-//   const milestonesData = {
-//     labels: ['Completed', 'Remaining'],
-//     datasets: [
-//       {
-//         data: [milestonesCompleted, milestonesRemaining],
-//         backgroundColor: ['rgba(75, 192, 192, 0.6)', 'rgba(255, 99, 132, 0.6)'],
-//         hoverBackgroundColor: ['rgba(75, 192, 192, 0.8)', 'rgba(255, 99, 132, 0.8)'],
-//       },
-//     ],
-//   };
-
-//   // Graph Data for Progress Updates (Line Chart)
-//   const progressData = {
-//     labels: ['Month 1', 'Month 2', 'Month 3', 'Month 4'],
-//     datasets: [
-//       {
-//         label: 'Progress (%)',
-//         data: [30, 50, 70, 100], // Example data, replace with real progress data
-//         borderColor: 'rgba(255, 159, 64, 1)',
-//         backgroundColor: 'rgba(255, 159, 64, 0.2)',
-//         tension: 0.1,
-//       },
-//     ],
-//   };
-
-//   return (
-//     <div className="project-profile-page">
-//       <h1>{projectProfile.projectTitle || "Untitled Project"}</h1>
-//       <p><strong>Project Abstract:</strong> {projectProfile.projectAbstract || "No abstract available"}</p>
-
-//       {/* Milestones Section */}
-//       <h2>Milestones</h2>
-//       <ul>
-//         {getArrayOrEmpty(projectProfile.milestones).length > 0 ? (
-//           getArrayOrEmpty(projectProfile.milestones).map((milestone, index) => (
-//             <li key={index}>{milestone.title || "Untitled milestone"}</li>
-//           ))
-//         ) : (
-//           <p>No milestones available</p>
-//         )}
-//       </ul>
-
-//       {/* Progress Updates Section */}
-//       <h2>Progress Updates</h2>
-//       <p>{projectProfile.progressUpdates || "No progress updates available."}</p>
-      
-//       {/* Budget Tracking Graph (Bar Chart) */}
-//       <h2>Project Budget Expenditure</h2>
-//       <div>
-//         <Bar data={budgetData} options={{ responsive: true }} />
-//       </div>
-
-//       {/* Milestones Completion Graph (Pie Chart) */}
-//       <h2>Milestones Completion</h2>
-//       <div>
-//         <Pie data={milestonesData} options={{ responsive: true }} />
-//       </div>
-
-//       {/* Progress Graph (Line Chart) */}
-//       <h2>Project Progress</h2>
-//       <div>
-//         <Line data={progressData} options={{ responsive: true }} />
-//       </div>
-
-//       {/* Ethical Compliance, IPR Updates, etc. */}
-//       <h2>Ethical and Regulatory Compliance</h2>
-//       <p>{projectProfile.ethicalCompliance || "No ethical compliance information available"}</p>
-
-//       <h2>Intellectual Property Rights Updates</h2>
-//       <p>{projectProfile.iprUpdates || "No IPR updates available"}</p>
-
-//       <h2>Team Updates</h2>
-//       <p>{projectProfile.teamUpdates || "No team updates available"}</p>
-
-//       <h2>Risks & Issues</h2>
-//       <p>{projectProfile.risksAndIssues || "No risks and issues reported"}</p>
-
-//       <h2>External Reports</h2>
-//       <p>{projectProfile.externalReports || "No external reports available"}</p>
-
-//       <h2>Project Impact</h2>
-//       <p>{projectProfile.projectImpact || "No project impact information available"}</p>
-//     </div>
-//   );
-// };
-
-// export default Monitoring;
-
 import React, { useState, useEffect } from "react";
-import './Monitoring.css'; // Ensure the CSS file is linked
 import { Line, Bar, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, PointElement, LineElement } from 'chart.js';
 
-// Register all necessary Chart.js components
+// Registering required ChartJS components
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -187,93 +17,94 @@ ChartJS.register(
 
 const Monitoring = () => {
   const [projectProfile, setProjectProfile] = useState(null);
-  const [error, setError] = useState(null);
 
-  // Simulate API call with dummy data using setTimeout
+  // Simulate fetching data
   useEffect(() => {
     setTimeout(() => {
       const dummyData = {
-        projectTitle: "My Real Estate Project",
-        projectAbstract: "This project involves developing a real estate web platform where users can search, filter, and view properties on a live map.",
+        projectTitle: "Smart City Development Project",
+        projectAbstract: "This project aims to design and implement IoT-based solutions to improve the infrastructure, utilities, and urban management of a city. It will focus on smart transportation, waste management, and energy efficiency.",
         milestones: [
-          { title: "Market Research", status: "Completed" },
-          { title: "UI/UX Design", status: "Completed" },
-          { title: "Backend Development", status: "Ongoing" },
-          { title: "Frontend Integration", status: "Pending" }
+          { title: "Market Research", status: "Completed", deadline: "2024-03-01" },
+          { title: "UI/UX Design", status: "Completed", deadline: "2024-05-15" },
+          { title: "IoT Sensor Installation", status: "Ongoing", deadline: "2024-08-01" },
+          { title: "Smart City Platform Launch", status: "Pending", deadline: "2025-01-01" }
         ],
         expenditureCategories: {
-          personnel: 7500,
-          travel: 1000,
-          supplies: 1500,
-          equipment: 3000,
+          personnel: 120000,
+          travel: 8000,
+          supplies: 15000,
+          equipment: 30000,
+          softwareLicenses: 20000,
+          consultancy: 50000
         },
-        progressUpdates: "Project is on track with backend development underway. The UI is fully designed and the next stage will be frontend integration.",
-        ethicalCompliance: "All ethical standards have been met. No issues found.",
-        iprUpdates: "No intellectual property claims at this stage.",
-        teamUpdates: "The team has expanded with a new full-stack developer joining the project.",
-        risksAndIssues: "Risk of delay in frontend development due to team expansion and training.",
-        externalReports: "No external audits or reports yet.",
-        projectImpact: "This project is expected to streamline property searches, providing an all-in-one platform for buyers and sellers."
+        totalBudget: 300000,
+        budgetUsed: 190000,
+        progressUpdates: "The project is progressing well, with IoT sensor installation nearing completion. The UI/UX design was successfully completed and is now integrated with the backend system.",
+        ethicalCompliance: "The project has passed all required ethical reviews and complies with the regulatory standards for data privacy and security.",
+        iprUpdates: "There are no intellectual property filings yet, but discussions are underway for potential patents related to IoT-based solutions.",
+        teamUpdates: "The team has grown, with additional engineers and software developers joining to speed up the deployment phase.",
+        risksAndIssues: "There is a potential risk of delays due to hardware procurement issues, which might impact the IoT sensor installation timeline.",
+        externalReports: "The first external audit will be conducted in Q3 2024.",
+        projectImpact: "The project aims to enhance the city's infrastructure, providing better urban services and improving quality of life for residents. Long-term impacts include reduced traffic congestion and improved waste management systems.",
+        patents: {
+          filed: 3,
+          granted: 2,
+          pending: 1
+        }
       };
 
-      // Set the dummy data after the delay
       setProjectProfile(dummyData);
-    }, 1000); // Simulates a 1-second delay
+    }, 1000); // Simulate 1-second API call delay
   }, []);
 
-  // Helper function to handle potential empty arrays
+  // Handling empty arrays safely
   const getArrayOrEmpty = (array) => Array.isArray(array) ? array : [];
-
-  // Handle loading and error states
-  if (error) {
-    return <div>{error}</div>;
-  }
 
   if (!projectProfile) {
     return <div>Loading...</div>;
   }
 
-  // Graph Data Preparation for Budget Expenditure (Bar Chart)
+  // Budget data preparation for Bar chart (Expenditure Categories)
   const budgetData = {
-    labels: ['Personnel', 'Travel', 'Supplies', 'Equipment'],
+    labels: ['Personnel', 'Travel', 'Supplies', 'Equipment', 'Software Licenses', 'Consultancy'],
     datasets: [
       {
-        label: 'Budget Expenditure ($)',
+        label: 'Expenditure ($)',
         data: [
-          projectProfile.expenditureCategories?.personnel || 0,
-          projectProfile.expenditureCategories?.travel || 0,
-          projectProfile.expenditureCategories?.supplies || 0,
-          projectProfile.expenditureCategories?.equipment || 0
+          projectProfile.expenditureCategories.personnel,
+          projectProfile.expenditureCategories.travel,
+          projectProfile.expenditureCategories.supplies,
+          projectProfile.expenditureCategories.equipment,
+          projectProfile.expenditureCategories.softwareLicenses,
+          projectProfile.expenditureCategories.consultancy
         ],
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        backgroundColor: 'rgba(75, 192, 192, 0.6)',
         borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1,
       },
     ],
   };
 
-  // Graph Data Preparation for Milestone Completion (Pie Chart)
-  const milestonesCompleted = getArrayOrEmpty(projectProfile.milestones).filter(milestone => milestone.status === 'Completed').length;
-  const milestonesRemaining = getArrayOrEmpty(projectProfile.milestones).length - milestonesCompleted;
-
-  const milestonesData = {
-    labels: ['Completed', 'Remaining'],
+  // Budget usage vs. remaining data for Pie chart
+  const budgetUsageData = {
+    labels: ['Used', 'Remaining'],
     datasets: [
       {
-        data: [milestonesCompleted, milestonesRemaining],
+        data: [projectProfile.budgetUsed, projectProfile.totalBudget - projectProfile.budgetUsed],
         backgroundColor: ['rgba(75, 192, 192, 0.6)', 'rgba(255, 99, 132, 0.6)'],
         hoverBackgroundColor: ['rgba(75, 192, 192, 0.8)', 'rgba(255, 99, 132, 0.8)'],
       },
     ],
   };
 
-  // Graph Data for Progress Updates (Line Chart)
+  // Progress data for Line chart (Example - Replace with real data)
   const progressData = {
     labels: ['Month 1', 'Month 2', 'Month 3', 'Month 4'],
     datasets: [
       {
         label: 'Progress (%)',
-        data: [30, 50, 70, 100], // Example data, replace with real progress data
+        data: [25, 50, 75, 100], // Example progress over time
         borderColor: 'rgba(255, 159, 64, 1)',
         backgroundColor: 'rgba(255, 159, 64, 0.2)',
         tension: 0.1,
@@ -283,87 +114,53 @@ const Monitoring = () => {
 
   return (
     <div className="project-profile-page">
-      <h1 className="page-title">{projectProfile.projectTitle || "Untitled Project"}</h1>
-      <p className="project-abstract"><strong>Project Abstract:</strong> {projectProfile.projectAbstract || "No abstract available"}</p>
+      <h1>{projectProfile.projectTitle}</h1>
+      <p><strong>Project Abstract:</strong> {projectProfile.projectAbstract}</p>
 
-      <div className="content-container">
-        {/* Milestones Section */}
-        <div className="section milestones-section">
-          <h2>Milestones</h2>
-          <ul>
-            {getArrayOrEmpty(projectProfile.milestones).length > 0 ? (
-              getArrayOrEmpty(projectProfile.milestones).map((milestone, index) => (
-                <li key={index}>{milestone.title || "Untitled milestone"} - {milestone.status}</li>
-              ))
-            ) : (
-              <p>No milestones available</p>
-            )}
-          </ul>
-        </div>
-
-        {/* Progress Updates Section */}
-        <div className="section">
-          <h2>Progress Updates</h2>
-          <p>{projectProfile.progressUpdates || "No progress updates available."}</p>
-        </div>
+      {/* Budget Breakdown (Bar Chart) */}
+      <div className="chart-section">
+        <h2>Expenditure by Category</h2>
+        <Bar data={budgetData} options={{ responsive: true }} />
       </div>
 
-      <div className="content-container">
-        {/* Budget Tracking Graph (Bar Chart) */}
-        <div className="chart-section">
-          <h2>Project Budget Expenditure</h2>
-          <div className="chart-container">
-            <Bar data={budgetData} options={{ responsive: true }} />
-          </div>
-        </div>
-
-        {/* Milestones Completion Graph (Pie Chart) */}
-        <div className="chart-section">
-          <h2>Milestones Completion</h2>
-          <div className="chart-container">
-            <Pie data={milestonesData} options={{ responsive: true }} />
-          </div>
-        </div>
-
-        {/* Progress Graph (Line Chart) */}
-        <div className="chart-section">
-          <h2>Project Progress</h2>
-          <div className="chart-container">
-            <Line data={progressData} options={{ responsive: true }} />
-          </div>
-        </div>
+      {/* Budget Usage Overview (Pie Chart) */}
+      <div className="chart-section">
+        <h2>Budget Usage vs Remaining</h2>
+        <Pie data={budgetUsageData} options={{ responsive: true }} />
       </div>
 
-      <div className="content-container">
-        {/* Ethical Compliance, IPR Updates, etc. */}
-        <div className="section">
-          <h2>Ethical and Regulatory Compliance</h2>
-          <p>{projectProfile.ethicalCompliance || "No ethical compliance information available"}</p>
-        </div>
+      {/* Progress Over Time (Line Chart) */}
+      <div className="chart-section">
+        <h2>Project Progress</h2>
+        <Line data={progressData} options={{ responsive: true }} />
+      </div>
 
-        <div className="section">
-          <h2>Intellectual Property Rights Updates</h2>
-          <p>{projectProfile.iprUpdates || "No IPR updates available"}</p>
-        </div>
+      {/* Other Project Information */}
+      <h2>Milestones</h2>
+      <ul>
+        {getArrayOrEmpty(projectProfile.milestones).map((milestone, index) => (
+          <li key={index}>{milestone.title} - {milestone.status} (Deadline: {milestone.deadline})</li>
+        ))}
+      </ul>
 
-        <div className="section">
-          <h2>Team Updates</h2>
-          <p>{projectProfile.teamUpdates || "No team updates available"}</p>
-        </div>
+      <h2>Progress Updates</h2>
+      <p>{projectProfile.progressUpdates}</p>
 
-        <div className="section">
-          <h2>Risks & Issues</h2>
-          <p>{projectProfile.risksAndIssues || "No risks and issues reported"}</p>
-        </div>
+      <h2>Project Impact</h2>
+      <p>{projectProfile.projectImpact}</p>
 
-        <div className="section">
-          <h2>External Reports</h2>
-          <p>{projectProfile.externalReports || "No external reports available"}</p>
-        </div>
-
-        <div className="section">
-          <h2>Project Impact</h2>
-          <p>{projectProfile.projectImpact || "No project impact information available"}</p>
+      {/* Ethical and Regulation Compliance */}
+      <div className="compliance-section">
+        <h2>Ethical and Regulation Compliance</h2>
+        <p>{projectProfile.ethicalCompliance}</p>
+        
+        {/* IP and Patent Status */}
+        <h3>Intellectual Property & Patents</h3>
+        <p>{projectProfile.iprUpdates}</p>
+        <div className="patent-status">
+          <p><strong>Filed Patents:</strong> {projectProfile.patents.filed}</p>
+          <p><strong>Granted Patents:</strong> {projectProfile.patents.granted}</p>
+          <p><strong>Pending Patents:</strong> {projectProfile.patents.pending}</p>
         </div>
       </div>
     </div>

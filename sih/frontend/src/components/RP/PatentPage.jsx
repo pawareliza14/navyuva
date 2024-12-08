@@ -1,37 +1,44 @@
 import React from 'react';
 import './PatentPage.css';
-import { Bar, Pie, Line, Scatter } from 'react-chartjs-2';
+import { Bar, Line, Scatter } from 'react-chartjs-2';
 import { FaSearch, FaCalendarAlt } from 'react-icons/fa';
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, LineElement, CategoryScale, LinearScale, ArcElement, PointElement } from 'chart.js';
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, LineElement, CategoryScale, LinearScale, ArcElement, PointElement);
 
-const PatentPage = () => {
+const EvaluationMetricsPage = () => {
   const patents = [
-    { title: 'Smart Textile Innovations', number: 'IN1234567', filingDate: '01/15/2021', grantDate: '05/22/2022', status: 'Granted', region: 'Ahmedabad', researchArea: 'Textiles', citations: 10 },
-    { title: 'AI for Pharmaceuticals', number: 'IN2345678', filingDate: '03/20/2020', grantDate: '10/12/2021', status: 'Granted', region: 'Vadodara', researchArea: 'AI', citations: 15 },
-    { title: 'Renewable Energy Storage', number: 'IN3456789', filingDate: '06/12/2022', status: 'Pending', region: 'Surat', researchArea: 'Renewable Energy', citations: 8 },
+    { title: 'Smart Textile Innovations', number: 'IN1234567', filingDate: '01/15/2021', grantDate: '05/22/2022', status: 'Granted', researchArea: 'Textiles', citations: 10 },
+    { title: 'AI for Pharmaceuticals', number: 'IN2345678', filingDate: '03/20/2020', grantDate: '10/12/2021', status: 'Granted', researchArea: 'AI', citations: 15 },
+    { title: 'Renewable Energy Storage', number: 'IN3456789', filingDate: '06/12/2022', status: 'Pending', researchArea: 'Renewable Energy', citations: 8 },
     // Add more entries as needed
   ];
 
-  const patentsByRegionData = {
-    labels: ['Ahmedabad', 'Vadodara', 'Surat', 'Rajkot', 'Gandhinagar'],
+  const publications = [
+    { title: 'AI for Healthcare Innovations', authors: 'Dr. Smith, Dr. Lee', year: '2024', project: 'AI in Healthcare' },
+    { title: 'Advancements in Renewable Energy', authors: 'Dr. Patel, Dr. Kumar', year: '2023', project: 'Energy Research' },
+    { title: 'Smart Textiles for Sustainability', authors: 'Dr. Gupta, Dr. Sharma', year: '2023', project: 'Textile Engineering' },
+    // Add more publications as needed
+  ];
+
+  const studentInvolvementData = {
+    labels: ['2020', '2021', '2022', '2023', '2024'],
     datasets: [
       {
-        label: 'Patents Filed',
-        data: [12, 9, 7, 3, 5],
-        backgroundColor: ['#4caf50', '#2196f3', '#ff9800', '#e91e63', '#9c27b0'],
+        label: 'Students Involved',
+        data: [15, 30, 45, 60, 75],
+        backgroundColor: '#4caf50',
       },
     ],
   };
 
-  const patentsByCategoryData = {
-    labels: ['Textiles', 'AI', 'Renewable Energy', 'Pharmaceuticals', 'Engineering'],
+  const publicationsByYearData = {
+    labels: ['2020', '2021', '2022', '2023', '2024'],
     datasets: [
       {
-        label: 'Research Categories',
-        data: [20, 18, 12, 25, 15],
-        backgroundColor: ['#4c6ef5', '#72c2f1', '#e1a3f3', '#f54291', '#42f57b'],
+        label: 'Publications by Year',
+        data: [3, 5, 10, 7, 4],
+        backgroundColor: '#72c2f1',
       },
     ],
   };
@@ -64,9 +71,15 @@ const PatentPage = () => {
     ],
   };
 
+  const ipDisputeData = [
+    { caseTitle: 'Patent Infringement by Tech Innovators', filedDate: '03/20/2023', disputedParties: 'Tech Innovators vs. Innovate Co.', status: 'Ongoing', impact: 'High' },
+    { caseTitle: 'AI Research Patent Dispute', filedDate: '07/15/2022', disputedParties: 'AI Research Labs vs. Smart Tech Inc.', status: 'Resolved', impact: 'Moderate' },
+    // Add more dispute entries as needed
+  ];
+
   return (
     <div className="patent-page">
-      <h1>IPR Trends</h1>
+      <h1>Evaluation Metrics</h1>
 
       {/* Filters Section */}
       <div className="filters">
@@ -88,20 +101,20 @@ const PatentPage = () => {
 
       {/* Visualizations Section */}
       <div className="visualizations">
-        {/* <div className="chart">
-          <h3>Patents by Region</h3>
-          <Bar data={patentsByRegionData} />
-        </div> */}
-        <div className="chart">
-          <h3>Patents by Research Area</h3>
-          <Pie data={patentsByCategoryData} />
+        <div className="chart-block">
+          <h3 className="chart-title">Student Involvement by Year</h3>
+          <Bar data={studentInvolvementData} />
         </div>
-        <div className="chart">
-          <h3>Average Filing-to-Grant Time</h3>
+        <div className="chart-block">
+          <h3 className="chart-title">Publications by Year</h3>
+          <Bar data={publicationsByYearData} />
+        </div>
+        <div className="chart-block">
+          <h3 className="chart-title">Average Filing-to-Grant Time</h3>
           <Line data={filingToGrantTimelineData} />
         </div>
-        <div className="chart">
-          <h3>Patent Impact: Citations vs. Filing Year</h3>
+        <div className="chart-block">
+          <h3 className="chart-title">Patent Impact: Citations vs. Filing Year</h3>
           <Scatter data={patentImpactData} />
         </div>
       </div>
@@ -117,7 +130,6 @@ const PatentPage = () => {
               <th>Filing Date</th>
               <th>Grant Date</th>
               <th>Status</th>
-              <th>Region</th>
               <th>Research Area</th>
               <th>Citations</th>
             </tr>
@@ -130,9 +142,60 @@ const PatentPage = () => {
                 <td>{patent.filingDate}</td>
                 <td>{patent.grantDate || 'N/A'}</td>
                 <td>{patent.status}</td>
-                <td>{patent.region}</td>
                 <td>{patent.researchArea}</td>
                 <td>{patent.citations}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Latest Publications */}
+      <div className="latest-publications">
+        <h3>Latest Publications</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Authors</th>
+              <th>Year</th>
+              <th>Project</th>
+            </tr>
+          </thead>
+          <tbody>
+            {publications.map((publication, index) => (
+              <tr key={index}>
+                <td>{publication.title}</td>
+                <td>{publication.authors}</td>
+                <td>{publication.year}</td>
+                <td>{publication.project}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* IP Dispute Section */}
+      <div className="ip-dispute-section">
+        <h3>IP Disputes</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Case Title</th>
+              <th>Filed Date</th>
+              <th>Disputed Parties</th>
+              <th>Status</th>
+              <th>Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ipDisputeData.map((dispute, index) => (
+              <tr key={index}>
+                <td>{dispute.caseTitle}</td>
+                <td>{dispute.filedDate}</td>
+                <td>{dispute.disputedParties}</td>
+                <td>{dispute.status}</td>
+                <td>{dispute.impact}</td>
               </tr>
             ))}
           </tbody>
@@ -142,4 +205,4 @@ const PatentPage = () => {
   );
 };
 
-export default PatentPage;
+export default EvaluationMetricsPage;

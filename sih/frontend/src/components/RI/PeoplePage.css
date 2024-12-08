@@ -1,0 +1,59 @@
+.people-page {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.search-bar {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar input {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.category-section {
+    margin-bottom: 40px;
+}
+
+.category-section h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.people-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.person-card {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.person-card h4 {
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.person-card p {
+    color: #555;
+    margin: 5px 0;
+}
+
+.person-card strong {
+    color: #333;
+}

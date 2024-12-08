@@ -79,15 +79,6 @@ const ProjectProfilePage = () => {
         </div>
       </div>
 
-      {/* Intellectual Property Rights Section */}
-      <h2>Intellectual Property Rights</h2>
-      <div className="grid">
-        <div className="card">
-          <p><strong>Status:</strong> {projectProfile.intellectualPropertyRights.status}</p>
-          <p><strong>Details:</strong> {projectProfile.intellectualPropertyRights.details}</p>
-        </div>
-      </div>
-
       {/* Institutional Approval Section */}
       <h2>Institutional Approval</h2>
       <div className="grid">

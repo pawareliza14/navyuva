@@ -4,6 +4,7 @@ import { FaBars, FaCog } from 'react-icons/fa'; // Import the settings icon
 import PatentPage from './PatentPage'; // Import PatentPage component
 import ResearchInstitutePage from './Profile'; // Import the new ResearchInstitutePage component
 import InstituteProjects from './Projects';
+import PeoplePage from './PeoplePage';
 
 const Dashboard = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,7 +33,7 @@ const Dashboard = () => {
             <li onClick={() => handleMenuClick('projects')}>Projects</li>
             <li onClick={() => handleMenuClick('people')}>People</li>
             <li onClick={() => handleMenuClick('patents')}>Patents</li> {/* Clicking this will show PatentPage */}
-            <li onClick={() => handleMenuClick('funding')}>Funding</li>
+            {/* <li onClick={() => handleMenuClick('funding')}>Funding</li> */}
           </ul>
 
           {/* Settings Icon */}
@@ -53,6 +54,7 @@ const Dashboard = () => {
         {selectedPage === 'research-institutes' && <ResearchInstitutePage />} {/* Display Research Institute page */}
         {selectedPage === 'patents' && <PatentPage />} {/* Display PatentPage when Patents is clicked */}
           {selectedPage === 'projects' && <InstituteProjects />} {/* Display PatentPage when Patents is clicked */}
+          {selectedPage === 'people' && <PeoplePage/>}
 
         {/* Add other conditionals here to show content for Projects, Funding, etc. */}
       </div>

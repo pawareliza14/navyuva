@@ -1,74 +1,120 @@
-/* Visualization Section */
+/* General Container Styles */
 .visualization-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 30px;
     margin-top: 40px;
+    padding: 0 15px;
+    /* Ensure spacing on smaller screens */
 }
 
 /* Card Styling for Visualizations */
 .visualization-card {
     background: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.visualization-card:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
 }
 
 .visualization-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
     color: #2c3e50;
+    font-weight: 600;
+    text-align: center;
 }
 
 .chart-container {
     width: 100%;
     height: 300px;
+    border-radius: 10px;
+    background: #f7f7f7;
+    /* Light background for better contrast */
 }
 
 /* Progress Bar Section */
 .progress-bar-container {
-    margin-top: 20px;
+    margin-top: 25px;
     width: 100%;
-    background-color: #e0e0e0;
-    border-radius: 8px;
+    background-color: #f0f0f0;
+    border-radius: 12px;
+    padding: 3px;
 }
 
 .progress-bar {
-    height: 20px;
+    height: 25px;
     width: 0%;
     background-color: #1abc9c;
     border-radius: 8px;
     transition: width 0.5s ease-in-out;
 }
 
+/* Section Card Styles */
 .section .card {
     background: #ffffff;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     border: 1px solid #e0e0e0;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
+.section .card:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+/* Budget Breakdown Styling */
 .budget-breakdown {
-    margin-top: 20px;
-    padding-top: 10px;
+    margin-top: 30px;
+    padding-top: 15px;
     border-top: 2px solid #ddd;
     width: 100%;
     text-align: center;
 }
 
 .budget-breakdown p {
-    margin: 8px 0;
-    font-size: 1rem;
+    margin: 10px 0;
+    font-size: 1.1rem;
     color: #34495e;
+    font-weight: 500;
+}
+
+.budget-breakdown p strong {
+    color: #1abc9c;
+}
+
+/* Responsive Design Improvements */
+@media (max-width: 768px) {
+    .visualization-container {
+        gap: 20px;
+        padding: 0 10px;
+    }
+
+    .visualization-card {
+        padding: 20px;
+    }
+
+    .visualization-card h3 {
+        font-size: 1.4rem;
+    }
+
+    .budget-breakdown p {
+        font-size: 1rem;
+    }
 }
