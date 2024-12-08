@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Line, Bar, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, PointElement, LineElement } from 'chart.js';
+import './Monitoring.css';
 
 // Registering required ChartJS components
 ChartJS.register(
   CategoryScale,
-  LinearScale,
+  LinearScale, 
   BarElement,
   Title,
   Tooltip,
@@ -15,62 +16,98 @@ ChartJS.register(
   LineElement
 );
 
+// Spinner Component for Loading state
+const Spinner = () => <div className="spinner">Loading...</div>;
+
 const Monitoring = () => {
   const [projectProfile, setProjectProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // Simulate fetching data
   useEffect(() => {
-    setTimeout(() => {
-      const dummyData = {
-        projectTitle: "Smart City Development Project",
-        projectAbstract: "This project aims to design and implement IoT-based solutions to improve the infrastructure, utilities, and urban management of a city. It will focus on smart transportation, waste management, and energy efficiency.",
-        milestones: [
-          { title: "Market Research", status: "Completed", deadline: "2024-03-01" },
-          { title: "UI/UX Design", status: "Completed", deadline: "2024-05-15" },
-          { title: "IoT Sensor Installation", status: "Ongoing", deadline: "2024-08-01" },
-          { title: "Smart City Platform Launch", status: "Pending", deadline: "2025-01-01" }
-        ],
-        expenditureCategories: {
-          personnel: 120000,
-          travel: 8000,
-          supplies: 15000,
-          equipment: 30000,
-          softwareLicenses: 20000,
-          consultancy: 50000
-        },
-        totalBudget: 300000,
-        budgetUsed: 190000,
-        progressUpdates: "The project is progressing well, with IoT sensor installation nearing completion. The UI/UX design was successfully completed and is now integrated with the backend system.",
-        ethicalCompliance: "The project has passed all required ethical reviews and complies with the regulatory standards for data privacy and security.",
-        iprUpdates: "There are no intellectual property filings yet, but discussions are underway for potential patents related to IoT-based solutions.",
-        teamUpdates: "The team has grown, with additional engineers and software developers joining to speed up the deployment phase.",
-        risksAndIssues: "There is a potential risk of delays due to hardware procurement issues, which might impact the IoT sensor installation timeline.",
-        externalReports: "The first external audit will be conducted in Q3 2024.",
-        projectImpact: "The project aims to enhance the city's infrastructure, providing better urban services and improving quality of life for residents. Long-term impacts include reduced traffic congestion and improved waste management systems.",
-        patents: {
-          filed: 3,
-          granted: 2,
-          pending: 1
-        }
-      };
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        // Simulating a delay as if it's fetching from an API
+        const dummyData = {
+          projectTitle: "Smart City Development Project",
+          projectAbstract: "This project aims to design and implement IoT-based solutions to improve the infrastructure, utilities, and urban management of a city.",
+          milestones: [
+            { title: "Market Research", status: "Completed", deadline: "2024-03-01" },
+            { title: "UI/UX Design", status: "Completed", deadline: "2024-05-15" },
+            { title: "IoT Sensor Installation", status: "Ongoing", deadline: "2024-08-01" },
+            { title: "Smart City Platform Launch", status: "Pending", deadline: "2025-01-01" }
+          ],
+          expenditureCategories: {
+            personnel: 120000,
+            travel: 8000,
+            supplies: 15000,
+            equipment: 30000,
+            softwareLicenses: 20000,
+            consultancy: 50000
+          },
+          totalBudget: 300000,
+          budgetUsed: 190000,
+          progressUpdates: "The project is progressing well, with IoT sensor installation nearing completion.",
+          ethicalCompliance: "The project has passed all required ethical reviews and complies with data privacy standards.",
+          iprUpdates: "No intellectual property filings yet.",
+          teamUpdates: "The team has grown with additional engineers joining.",
+          risksAndIssues: "Potential delays due to hardware procurement issues.",
+          externalReports: "First external audit will be conducted in Q3 2024.",
+          projectImpact: "The project aims to enhance the city's infrastructure, providing better urban services.",
+          patents: {
+            filed: 3,
+            granted: 2,
+            pending: 1
+          },
+          lifecycleMetrics: {
+            initiation: {
+              projectOverview: "Set project objectives, goals, and define stakeholders.",
+              resourcesBudget: { initialBudget: 300000, fundingSecured: true },
+              timelineDeadlines: { startDate: "2024-01-01", estimatedEndDate: "2025-01-01" },
+            },
+            planning: {
+              projectTasks: "Break down project into tasks with clear milestones.",
+              riskManagement: "Identify risks like hardware delays, resource allocation issues.",
+              teamRoles: "Defined roles for team members including research leads."
+            },
+            execution: {
+              progressReporting: "Regular updates of task completion and challenges faced.",
+              dataAnalysis: "Data collection is ongoing, with analysis of initial IoT results.",
+              ethicsCompliance: "Ethical reviews and regulatory requirements are being adhered to.",
+            },
+            monitoring: {
+              taskMilestoneTracking: "Ensure tasks are completed per the set deadlines.",
+              riskManagementTracking: "Regular risk assessments for delays or hardware procurement.",
+            },
+            closing: {
+              deliverables: "Final reports, publications, and patents expected in Q1 2025.",
+              evaluation: "Final project impact evaluation will assess urban improvements.",
+            }
+          }
+        };
 
-      setProjectProfile(dummyData);
-    }, 1000); // Simulate 1-second API call delay
+        setProjectProfile(dummyData);
+        setLoading(false);
+      } catch (err) {
+        setError('Failed to load project data');
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
-  // Handling empty arrays safely
-  const getArrayOrEmpty = (array) => Array.isArray(array) ? array : [];
-
-  if (!projectProfile) {
-    return <div>Loading...</div>;
-  }
+  if (loading) return <Spinner />;
+  if (error) return <div>{error}</div>;
 
   // Budget data preparation for Bar chart (Expenditure Categories)
   const budgetData = {
     labels: ['Personnel', 'Travel', 'Supplies', 'Equipment', 'Software Licenses', 'Consultancy'],
     datasets: [
       {
-        label: 'Expenditure ($)',
+        label: 'Expenditure (₹)',
         data: [
           projectProfile.expenditureCategories.personnel,
           projectProfile.expenditureCategories.travel,
@@ -135,34 +172,43 @@ const Monitoring = () => {
         <Line data={progressData} options={{ responsive: true }} />
       </div>
 
-      {/* Other Project Information */}
+      {/* Milestones */}
       <h2>Milestones</h2>
       <ul>
-        {getArrayOrEmpty(projectProfile.milestones).map((milestone, index) => (
-          <li key={index}>{milestone.title} - {milestone.status} (Deadline: {milestone.deadline})</li>
+        {projectProfile.milestones.map((milestone, index) => (
+          <li key={index}>
+            {milestone.title} - {milestone.status} (Deadline: {milestone.deadline})
+          </li>
         ))}
       </ul>
 
+      {/* Project Impact and Updates */}
       <h2>Progress Updates</h2>
       <p>{projectProfile.progressUpdates}</p>
 
       <h2>Project Impact</h2>
       <p>{projectProfile.projectImpact}</p>
 
-      {/* Ethical and Regulation Compliance */}
-      <div className="compliance-section">
-        <h2>Ethical and Regulation Compliance</h2>
-        <p>{projectProfile.ethicalCompliance}</p>
-        
-        {/* IP and Patent Status */}
-        <h3>Intellectual Property & Patents</h3>
-        <p>{projectProfile.iprUpdates}</p>
-        <div className="patent-status">
-          <p><strong>Filed Patents:</strong> {projectProfile.patents.filed}</p>
-          <p><strong>Granted Patents:</strong> {projectProfile.patents.granted}</p>
-          <p><strong>Pending Patents:</strong> {projectProfile.patents.pending}</p>
-        </div>
+      {/* Ethical Compliance */}
+      <h2>Ethical and Regulation Compliance</h2>
+      <p>{projectProfile.ethicalCompliance}</p>
+
+      {/* Patents */}
+      <h3>Intellectual Property & Patents</h3>
+      <p>{projectProfile.iprUpdates}</p>
+      <div>
+        <p><strong>Filed Patents:</strong> {projectProfile.patents.filed}</p>
+        <p><strong>Granted Patents:</strong> {projectProfile.patents.granted}</p>
+        <p><strong>Pending Patents:</strong> {projectProfile.patents.pending}</p>
       </div>
+
+      {/* Lifecycle Metrics */}
+      <h2>Project Lifecycle Metrics</h2>
+      <div className="metrics-section">
+        <h3>Initiation</h3>
+        <p>{projectProfile.lifecycleMetrics.initiation.projectOverview}</p>
+      </div>
+      {/* Additional sections can be added similarly */}
     </div>
   );
 };

@@ -1,105 +1,135 @@
-/* Overall page styling */
+/* Overall Page Styling */
 .project-profile-page {
   font-family: 'Roboto', sans-serif;
-  padding: 30px;
   background-color: #f9f9f9;
   color: #333;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Title Section */
-.page-title {
+/* Page Title Section */
+.project-profile-page h1 {
   font-size: 2.5rem;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 30px;
   color: #4a4a4a;
-  letter-spacing: 1px;
+  margin-bottom: 20px;
   text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Project Abstract */
-.project-abstract {
+.project-profile-page p {
   font-size: 1.1rem;
-  margin-bottom: 30px;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
   line-height: 1.6;
+  color: #555;
+  margin-bottom: 30px;
 }
 
-/* Container for organizing content into blocks */
-.content-container {
+/* Spinner Component for Loading state */
+.project-profile-page .spinner {
+  font-size: 1.5rem;
+  color: #007bff;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Container for organizing content into sections */
+.project-profile-page .content-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 30px;
   margin-bottom: 50px;
+  padding: 0 15px;
+  width: 100%;
 }
 
-/* Block styling for each section */
-.section {
+/* Section Styling for Major Content Areas (Milestones, Compliance, etc.) */
+.project-profile-page .section {
   background-color: #ffffff;
   padding: 25px;
   border-radius: 10px;
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
+  overflow: hidden;
 }
 
-.section:hover {
+.project-profile-page .section:hover {
   transform: translateY(-5px);
 }
 
-.section h2 {
+.project-profile-page .section h2 {
   font-size: 1.6rem;
   font-weight: 600;
   color: #333;
   margin-bottom: 20px;
+  text-transform: capitalize;
 }
 
-.section p {
+.project-profile-page .section p {
   font-size: 1.1rem;
   color: #555;
   line-height: 1.6;
+  margin-bottom: 15px;
 }
 
-/* Chart Section Styling */
-.chart-section {
-  flex: 1 1 100%;
+/* Divider Between Sections (Optional) */
+.project-profile-page .section-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+  margin: 30px 0;
+}
+
+/* Charts Section (if applicable) */
+.project-profile-page .chart-section {
+  width: 100%;
   margin-bottom: 50px;
+  padding: 0 15px;
 }
 
-.chart-container {
+.project-profile-page .chart-container {
   width: 100%;
   height: 300px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Milestone List Styling */
-ul {
+/* Lists (Milestones or Other Lists) */
+.project-profile-page ul {
   list-style-type: none;
   padding: 0;
 }
 
-li {
+.project-profile-page ul li {
   margin-bottom: 15px;
   font-size: 1.1rem;
   color: #555;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid #ddd;
 }
 
-li span {
+.project-profile-page ul li span {
   font-size: 0.9rem;
   color: #888;
 }
 
-/* Patent and Compliance Section */
-.compliance-section {
+/* External Reports and Updates Section */
+.project-profile-page .updates-section {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
@@ -107,68 +137,70 @@ li span {
   margin-bottom: 50px;
 }
 
-.compliance-section h2 {
+.project-profile-page .updates-section h2 {
   font-size: 1.6rem;
   font-weight: 600;
   color: #333;
   margin-bottom: 20px;
 }
 
-.compliance-section p {
+.project-profile-page .updates-section p {
   font-size: 1.1rem;
   color: #555;
   line-height: 1.6;
 }
 
-.patent-status p {
+/* Patent and Compliance Section */
+.project-profile-page .compliance-section {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
+}
+
+.project-profile-page .compliance-section h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.project-profile-page .compliance-section p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.project-profile-page .patent-status p {
   font-size: 1.1rem;
   color: #333;
   font-weight: 500;
   margin: 5px 0;
 }
 
-.patent-status strong {
+.project-profile-page .patent-status strong {
   color: #333;
+  font-weight: 700;
 }
 
-/* External Reports and Updates */
-.updates-section {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
-}
-
-.updates-section h2 {
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.updates-section p {
-  font-size: 1.1rem;
-  color: #555;
-  line-height: 1.6;
-}
-
-/* Responsive Layout for smaller screens */
+/* Responsive Layout */
 @media (max-width: 1024px) {
-  .content-container {
+  .project-profile-page .content-container {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 768px) {
-  .page-title {
+  .project-profile-page h1 {
     font-size: 2rem;
   }
 
-  .section h2 {
+  .project-profile-page .section h2 {
     font-size: 1.4rem;
   }
 
-  .chart-container {
+  .project-profile-page .chart-container {
     height: 250px;
   }
 }

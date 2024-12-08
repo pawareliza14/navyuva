@@ -116,28 +116,29 @@ th {
 }
 
 td {
-    color: #333;
-    font-size: 14px;
+    color: #555;
 }
 
-/* Hover effect on table rows */
-tr:hover {
-    background-color: #f1f1f1;
+/* Section Header for IP Disputes */
+.ip-dispute-section h3 {
+    margin-bottom: 20px;
+    color: #2e1e77;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
-/* Responsiveness */
+/* Responsive Design */
 @media (max-width: 768px) {
     .filters {
         flex-direction: column;
-        align-items: stretch;
+        align-items: center;
     }
 
-    .chart-block {
-        max-width: 100%;
-        width: 100%;
+    .visualizations {
+        grid-template-columns: 1fr;
     }
 
     table {
-        font-size: 12px;
+        font-size: 14px;
     }
 }
