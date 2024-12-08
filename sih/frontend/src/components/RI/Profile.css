@@ -2,147 +2,219 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-/* Research Institute Page */
-.research-institute-page {
-    padding: 30px;
-    font-family: 'Roboto', Arial, sans-serif;
-    background-color: #f4f6f8;
-    color: #34495e;
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f6f8;
+  color: #000000;
 }
 
-/* Headings */
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 2rem;
-    color: #2c3e50;
-    text-transform: uppercase;
+/* Profile Header Styles */
+.profile-header {
+  background: linear-gradient(10deg, #ffffff, #3549922d); /* Blue gradient */
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
-h4,
-h5 {
-    margin-bottom: 1rem;
-    color: #34495e;
-    font-weight: bold;
+.profile-header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-/* Sections */
-.section {
-    margin-bottom: 30px;
-    padding: 20px;
+.profile-header h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #000000;
 }
 
-/* Grid Layout for Horizontal Block */
-.section .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    /* Adjust column size for responsiveness */
-    gap: 20px;
-    padding: 10px;
+.profile-header .location {
+  font-style: italic;
+  color: #020202;
+  margin-bottom: 8px;
 }
 
-/* Cards */
+.profile-header p {
+  margin: 5px 0;
+  font-size: 1.1em;
+  color: #000;
+}
+
+.profile-header p i {
+  margin-right: 8px;
+  color: #2e1e77;  /* Adjust to your design */
+}
+
+.profile-header a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.profile-header a:hover {
+  text-decoration: underline;
+}
+
+/* Profile Header Flex Layout for Contact Info */
+.profile-header-content .type-year,
+.profile-header-content .contact-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 20%; /* Adds space between items */
+}
+
+.profile-header-content .type-year p,
+.profile-header-content .contact-info p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.profile-header-content .type-year p i,
+.profile-header-content .contact-info p i {
+  margin-right: 8px;
+  color: #2e1e77;
+}
+
+/* Card Styles */
 .card {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border: 1px solid #ccc;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #ccc;
 }
 
 .card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #333;
 }
 
 .card p {
-    line-height: 1.6;
-    margin: 10px 0;
-    color: #555;
+  line-height: 1.6;
+  margin: 10px 0;
+  color: #555;
 }
 
 .card ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .card ul li {
-    margin-bottom: 10px;
-    position: relative;
-    padding-left: 15px;
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 15px;
 }
 
 .card ul li:before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    color: #1abc9c;
-    font-size: 1.2rem;
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #1abc9c;
+  font-size: 1.2rem;
 }
 
 /* Links */
 .card a {
-    color: #3498db;
-    text-decoration: none;
+  color: #3498db;
+  text-decoration: none;
 }
 
 .card a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* Button-like Links */
 .card a.button {
-    padding: 8px 15px;
-    background-color: #3498db;
-    color: #fff;
-    border-radius: 5px;
-    font-weight: bold;
-    display: inline-block;
-    text-align: center;
-    transition: background-color 0.3s ease;
+  padding: 8px 15px;
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 5px;
+  font-weight: bold;
+  display: inline-block;
+  text-align: center;
+  transition: background-color 0.3s ease;
 }
 
 .card a.button:hover {
-    background-color: #2980b9;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #2980b9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive Design for Horizontal Layout */
+/* Research Institute Page */
+.research-institute-page {
+  padding: 30px;
+  background-color: #f4f6f8;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #2c3e50;
+  text-transform: uppercase;
+}
+
+h4,
+h5 {
+  margin-bottom: 1rem;
+  color: #34495e;
+  font-weight: bold;
+}
+
+/* Sections */
+.section {
+  margin-bottom: 30px;
+}
+
+
+/* Responsive Design for Grid Layout */
 @media (max-width: 1024px) {
-    .section .grid {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    }
+  .section .grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* More compact grid on mid-size screens */
+  }
+
+  .leadership-governance .grid {
+    grid-template-columns: 1fr;  /* Stack sections on smaller screens */
+  }
 }
 
 @media (max-width: 768px) {
-    h2 {
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-    }
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
 
-    .card {
-        padding: 15px;
-    }
+  .card {
+    padding: 15px;
+  }
 
-    .section .grid {
-        grid-template-columns: 1fr;
-        /* Stacks columns in smaller screens */
-    }
+  .section .grid {
+    grid-template-columns: 1fr; /* Stack columns in smaller screens */
+  }
 
-    .card p {
-        margin: 1rem 0;
-    }
+  .card p {
+    margin: 1rem 0;
+  }
 }
 
 @media (max-width: 480px) {
-    .research-institute-page {
-        padding: 15px;
-    }
+  .research-institute-page {
+    padding: 15px;
+  }
 }

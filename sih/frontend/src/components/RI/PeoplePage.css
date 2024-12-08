@@ -1,6 +1,7 @@
 .people-page {
     font-family: Arial, sans-serif;
     margin: 20px;
+    background-color: #f6f4ff9f;
 }
 
 h1 {
@@ -9,25 +10,48 @@ h1 {
 }
 
 .search-bar {
-    margin-bottom: 20px;
+    margin: 20px auto;
     display: flex;
     justify-content: center;
-}
-
-.search-bar input {
-    width: 50%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
+    align-items: center; /* Center the icon and input vertically */
+  }
+  
+  .search-bar input {
+    width: 80%;
+    padding: 10px 40px 10px 20px; /* Add padding for space on the left for the icon */
     border: 1px solid #ccc;
-}
+    border-radius: 30px; /* Rounded corners for a cleaner look */
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    background-color: #21174f25;
+  }
+  
+  .search-bar input:focus {
+    border-color: #2e1e77; /* Change border color when focused */
+  }
+  
+  .search-bar input::placeholder {
+    color: #999;
+  }
+  
+  .search-bar .search-icon {
+    position: absolute; /* Position the icon inside the input field */
+    left: 25px; /* Space from the left */
+    color: #2e1e77; /* Icon color */
+    font-size: 20px; /* Icon size */
+    pointer-events: none; /* Prevent the icon from blocking input */
+  }
+  
+  
 
 .category-section {
     margin-bottom: 40px;
 }
 
 .category-section h3 {
-    color: #333;
+    font-size: 30px;
+    color: #21174f;
     margin-bottom: 10px;
 }
 
@@ -38,14 +62,15 @@ h1 {
 }
 
 .person-card {
-    background-color: #f4f4f4;
+    background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .person-card h4 {
-    color: #007bff;
+    font-size: 25px;
+    color: #000000;
     margin-bottom: 10px;
 }
 

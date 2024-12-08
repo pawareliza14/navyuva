@@ -1,152 +1,117 @@
-/* Hero Section */
-.hero-section {
-    background-color: #f5f5f5;
-    /* Light grey background */
-    color: #333333;
-    /* Dark grey text */
-    padding: 50px 20px;
-    text-align: center;
-    border-radius: 8px;
-    margin-bottom: 40px;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Hero Section Image */
-.hero-section::before {
-    content: "";
-    background-image: url("https://via.placeholder.com/1500x800?text=Institute+Image");
-    /* Replace with your actual image */
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    /* width: 100%;
-    height: 100%; */
-    opacity: 0.3;
-    /* Reduced opacity for background image */
-    z-index: 0;
-    /* Image is in the background */
-}
-
-/* Content inside Hero Section */
-.hero-section h2,
-.hero-section p {
-    position: relative;
-    z-index: 1;
-    color: #333333;
-    /* Dark grey text */
-}
-
-.hero-section .know-more-button {
-    padding: 15px 30px;
-    background-color: #4c6ef5;
-    /* Blue color */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-    position: relative;
-    z-index: 1;
-}
-
-.hero-section .know-more-button:hover {
-    background-color: #3a5bdb;
-    /* Darker blue on hover */
-}
-
 /* Latest Projects Section */
+
 .latest-projects {
     margin-top: 40px;
-    background-color: #ffffff;
-    /* White background for clarity */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    /* Soft shadow */
+    background-color: var(--card-bg, #fefefe); /* Use a light card-like background color */
+    padding: 24px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border: 1px solid var(--border-color, #e0e0e0); /* Soft border for a polished look */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 100%; /* Ensures responsiveness */
+}
+
+.latest-projects:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
 }
 
 .latest-projects h3 {
-    font-size: 28px;
-    color: #333333;
-    /* Dark grey text */
+    font-size: 24px;
+    color: var(--primary-color, #222831); /* Dynamic primary color */
     margin-bottom: 20px;
+    font-weight: 600;
+    text-transform: uppercase; /* Optional for titles */
+    border-bottom: 2px solid var(--accent-color, #4c6ef5); /* Accent underline for emphasis */
+    padding-bottom: 8px;
 }
 
+/* Scrollable Table Container */
 .projects-table {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
+    max-height: 800px; /* Set the desired height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-right: 8px; /* Add padding to avoid scroll bar overlap */
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
 }
 
-.table-header,
+.projects-table::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Webkit-based browsers */
+}
+
+/* Table Header Styling */
+.table-header {
+    background-color: #f4f7fc;
+        color: #2e1e77;
+        /* font-weight: 600; */
+        font-size: 16px;
+        text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    /* color: var(--text-color-dark, #333333); */
+    font-weight: 700;
+    padding: 14px 20px;
+    border-radius: 8px;
+    text-transform: uppercase; /* Optional for headers */
+    letter-spacing: 0.5px; /* Subtle spacing for readability */
+    border-bottom: 2px solid var(--border-color, #e0e0e0); /* Delicate bottom border */
+}
+
+/* Table Rows */
 .table-row {
     display: flex;
     justify-content: space-between;
-    background-color: #f9f9f9;
-    /* Very light grey for header */
-    padding: 12px 20px;
+    background-color: var(--card-bg, #ffffff);
+    padding: 14px 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease;
 }
 
-.table-header {
-    background-color: #e5e5e5;
-    /* Slightly darker grey for header */
-    color: #333333;
-    /* Dark text for contrast */
-    font-weight: bold;
+.table-row:hover {
+    background-color: var(--hover-bg, #f0f8ff); /* Highlight row on hover */
+}
+
+.table-row:nth-child(even) {
+    background-color: var(--alternate-row-bg, #fafafa); /* Soft alternate row color */
 }
 
 .table-cell {
     flex: 1;
     text-align: left;
     padding: 5px;
-    font-size: 14px;
+    font-size: 15px;
+    color: var(--text-color, #555555); /* Text color consistent with theme */
 }
 
-.table-row {
-    background-color: #ffffff;
-    /* White for rows */
-}
-
-.table-row:nth-child(even) {
-    background-color: #f7f7f7;
-    /* Light grey for alternating rows */
-}
-
+/* Highlight Title Column */
 .table-cell:first-child {
-    font-weight: bold;
+    font-weight: 600;
+    color: var(--text-color-dark, #222831);
 }
 
 /* Styling for Know More Buttons */
 .know-more-button {
-    padding: 8px 16px;
-    background-color: #4c6ef5;
-    /* Blue for button */
-    color: white;
+    padding: 10px 18px;
+    background-color: var(--button-bg, #2e1e77); /* Primary button color */
+    color: var(--button-text, #ffffff);
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 14px;
-    transition: background-color 0.3s;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle button shadow */
 }
 
 .know-more-button:hover {
-    background-color: #3a5bdb;
-    /* Darker blue on hover */
+    background-color: var(--button-hover-bg, #251959); /* Darker shade for hover */
+    transform: scale(1.05); /* Slight scaling effect */
 }
 
-/* Styling for Links */
-a {
-    color: #4c6ef5;
-    /* Blue for links */
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
+.know-more-button:active {
+    transform: scale(1); /* Reset scaling */
+    background-color: var(--button-active-bg, #2f4fb5); /* Active state color */
 }
