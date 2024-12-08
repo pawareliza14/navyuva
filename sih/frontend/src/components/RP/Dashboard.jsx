@@ -24,23 +24,23 @@ const RPDashboard = () => {
         <FaBars size={24} />
       </div>
 
-      {/* Left Panel */}
-      {isMenuOpen && (
-        <div className="left-panel">
-          <ul className="menu">
-            <li onClick={() => handleMenuClick('research-institutes')}>Projects</li>
-            <li onClick={() => handleMenuClick('people')}>People</li>
-            <li onClick={() => handleMenuClick('patents')}>Patents</li> {/* Clicking this will show PatentPage */}
-            <li onClick={() => handleMenuClick('funding')}>Funding</li>
-            <li onClick={() => handleMenuClick('monitoring')}>Monitoring</li> {/* New Monitoring Button */}
-          </ul>
+     {/* Left Panel */}
+{isMenuOpen && (
+  <div className="left-panel">
+    <ul className="menu">
+      <li onClick={() => handleMenuClick('research-institutes')}>Projects</li>
+      <li onClick={() => handleMenuClick('collabration')}>Collabrations</li> {/* Replaced 'People' with 'Tracking' */}
+      <li onClick={() => handleMenuClick('patents')}>Patents</li>
+      <li onClick={() => handleMenuClick('issues')}>Issues</li>
+      <li onClick={() => handleMenuClick('monitoring')}>Monitoring</li>
+    </ul>
 
-          {/* Settings Icon */}
-          <div className="settings-icon">
-            <FaCog />
-          </div>
-        </div>
-      )}
+    {/* Settings Icon */}
+    <div className="settings-icon">
+      <FaCog />
+    </div>
+  </div>
+)}
 
       {/* Main Content */}
       <div className="main-content">

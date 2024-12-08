@@ -1,0 +1,152 @@
+/* Hero Section */
+.hero-section {
+    background-color: #f5f5f5;
+    /* Light grey background */
+    color: #333333;
+    /* Dark grey text */
+    padding: 50px 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hero Section Image */
+.hero-section::before {
+    content: "";
+    background-image: url("https://via.placeholder.com/1500x800?text=Institute+Image");
+    /* Replace with your actual image */
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* width: 100%;
+    height: 100%; */
+    opacity: 0.3;
+    /* Reduced opacity for background image */
+    z-index: 0;
+    /* Image is in the background */
+}
+
+/* Content inside Hero Section */
+.hero-section h2,
+.hero-section p {
+    position: relative;
+    z-index: 1;
+    color: #333333;
+    /* Dark grey text */
+}
+
+.hero-section .know-more-button {
+    padding: 15px 30px;
+    background-color: #4c6ef5;
+    /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-section .know-more-button:hover {
+    background-color: #3a5bdb;
+    /* Darker blue on hover */
+}
+
+/* Latest Projects Section */
+.latest-projects {
+    margin-top: 40px;
+    background-color: #ffffff;
+    /* White background for clarity */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    /* Soft shadow */
+}
+
+.latest-projects h3 {
+    font-size: 28px;
+    color: #333333;
+    /* Dark grey text */
+    margin-bottom: 20px;
+}
+
+.projects-table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.table-header,
+.table-row {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    /* Very light grey for header */
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.table-header {
+    background-color: #e5e5e5;
+    /* Slightly darker grey for header */
+    color: #333333;
+    /* Dark text for contrast */
+    font-weight: bold;
+}
+
+.table-cell {
+    flex: 1;
+    text-align: left;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.table-row {
+    background-color: #ffffff;
+    /* White for rows */
+}
+
+.table-row:nth-child(even) {
+    background-color: #f7f7f7;
+    /* Light grey for alternating rows */
+}
+
+.table-cell:first-child {
+    font-weight: bold;
+}
+
+/* Styling for Know More Buttons */
+.know-more-button {
+    padding: 8px 16px;
+    background-color: #4c6ef5;
+    /* Blue for button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.know-more-button:hover {
+    background-color: #3a5bdb;
+    /* Darker blue on hover */
+}
+
+/* Styling for Links */
+a {
+    color: #4c6ef5;
+    /* Blue for links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

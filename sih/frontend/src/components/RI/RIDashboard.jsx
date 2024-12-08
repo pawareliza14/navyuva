@@ -3,6 +3,7 @@ import './RIDashboard.css';
 import { FaBars, FaCog } from 'react-icons/fa'; // Import the settings icon
 import PatentPage from './PatentPage'; // Import PatentPage component
 import ResearchInstitutePage from './Profile'; // Import the new ResearchInstitutePage component
+import InstituteProjects from './Projects';
 
 const Dashboard = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -51,6 +52,8 @@ const Dashboard = () => {
         )}
         {selectedPage === 'research-institutes' && <ResearchInstitutePage />} {/* Display Research Institute page */}
         {selectedPage === 'patents' && <PatentPage />} {/* Display PatentPage when Patents is clicked */}
+          {selectedPage === 'projects' && <InstituteProjects />} {/* Display PatentPage when Patents is clicked */}
+
         {/* Add other conditionals here to show content for Projects, Funding, etc. */}
       </div>
 
